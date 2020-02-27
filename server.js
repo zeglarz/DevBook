@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Init Middleware
-app.use(express.json({extended: false}));
+app.use(express.json({ extended: false }));
 
 
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));

@@ -1,3 +1,4 @@
 {
-  "mongoURI": "'paste here your own database'"
+  "mongoURI": "'paste here your own database'",
+  "jwtSecret": "'paste here your own secret token'"
 }
