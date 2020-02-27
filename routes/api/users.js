@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 
-let createUser = async (req, res) => {
+let registerUser = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -55,7 +55,7 @@ let createUser = async (req, res) => {
     }
 };
 
-// @route   GET api/users
+// @route   POST api/users
 // @desc    Register user
 // @access  Public
 
@@ -64,7 +64,7 @@ router.post('/', [
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
     ],
-    createUser
+    registerUser
 );
 
 module.exports = router;
