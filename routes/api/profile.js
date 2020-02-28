@@ -7,8 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 
 // @route   GET api/profile/me
 // @desc    GET current user profile
-// @access  Public
-
+// @access  Private
 
 const getUserProfile = async (req, res) => {
     try {
@@ -58,13 +57,13 @@ const createProfile = async (req, res) => {
     if (instagram) profileFields.social.instagram = instagram;
 
     try {
-        let profile = Profile.findOne({ user: req.user.id });
+        let profile = await Profile.findOne({ user: req.user.id });
         if (profile) {
             // Update
             profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, {
-                new: true,
-                useFindAndModify: false
+                new: true
             });
+            return res.json(profile);
         }
         // Create
         profile = new Profile(profileFields);
@@ -80,7 +79,7 @@ const createProfile = async (req, res) => {
 
 // @route   GET api/profile
 // @desc    Create or update user profile
-// @access  Public
+// @access  Private
 router.post('/',
     [
         auth,
@@ -93,5 +92,67 @@ router.post('/',
                 .isEmpty()
         ]], createProfile);
 
+// @route   GET api/profile/
+// @desc    GET all profiles
+// @access  Public
+
+const getAllProfiles = async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+        res.json(profiles);
+    } catch (err) {
+        ;
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+router.get('/', getAllProfiles);
+
+// @route   GET api/profile/user/user_id
+// @desc    GET user by user ID
+// @access  Public
+
+const getProfile = async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+
+        if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+        res.json(profile);
+
+    } catch (err) {
+        console.error(err.message);
+
+        if (err.kind === 'ObjectId') return res.status(400).json({ msg: 'Profile not found' });
+
+        res.status(500).send('Server Error');
+    }
+};
+
+router.get('/user/:user_id', getProfile);
+
+// @route   DELETE api/profile/
+// @desc    Delete profile,user & posts
+// @access  Private
+
+const deleteProfile = async (req, res) => {
+    try {
+        // @todo - remove users posts
+        // Remove profile
+        await Profile.findOneAndRemove({ user: req.user.id });
+
+        // Remove user
+        await User.findOneAndRemove({ _id: req.user.id });
+
+        await res.json({ msg: 'successfully removed' });
+
+    } catch (err) {
+        ;
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+router.delete('/', auth, deleteProfile);
 
 module.exports = router;
