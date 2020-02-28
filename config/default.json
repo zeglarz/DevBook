@@ -1,4 +1,6 @@
 {
   "mongoURI": "'paste here your own database'",
-  "jwtSecret": "'paste here your own secret token'"
+  "jwtSecret": "'paste here your own secret token'",
+  "githubClientID": "'paste here your guthub client id'",
+  "githubClientSecret": "'paste here your own paste here your guthub client secret'"
 }
