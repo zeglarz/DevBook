@@ -197,7 +197,6 @@ router.post('/comment/:id', [auth, [
 
 const removeComment = async (req, res) => {
     try {
-        // const user = await User.findById(req.user.id).select('-password');
         const post = await Post.findById(req.params.id);
 
         // Pull out comment
