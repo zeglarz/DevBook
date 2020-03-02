@@ -1,6 +1,0 @@
-{
-  "mongoURI": "past-here-your-db-url",
-  "jwtSecret": "paste-here-your-secret-token",
-  "githubClientID": "paste-here-your-github-client-id",
-  "githubClientSecret": "paste-here-your-github-secret"
-}
