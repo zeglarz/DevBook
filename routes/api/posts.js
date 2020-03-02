@@ -105,5 +105,56 @@ const deletePost = async (req, res) => {
 
 router.delete('/:id', auth, deletePost);
 
+// @route   PUT api/posts/like/:id
+// @desc    Add like to post
+// @access  Private
+
+const addLike = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        // Check if post has been already liked?
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+            return res.status(400).json({ msg: 'Post already liked' });
+        }
+        post.likes.unshift({ user: req.user.id });
+
+        await post.save();
+
+        await res.json(post.likes);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+router.put('/like/:id', auth, addLike);
+
+// @route   PUT api/posts/unlike/:id
+// @desc    Unlike a post
+// @access  Private
+const removeLike = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        // Check if post has been already liked?
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+            return res.status(400).json({ msg: 'Post is not liked by you' });
+        }
+
+        // Get remove index
+        const removeIndex = post.likes.map(like => like.user.toString().indexOf(req.user.id));
+        post.likes.splice(removeIndex, 1);
+        await post.save();
+
+        await res.json({ msg: 'Like has been successfully removed.' });
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+router.put('/unlike/:id', auth, removeLike);
 
 module.exports = router;
