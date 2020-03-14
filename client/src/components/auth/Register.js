@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = (props) => {
         const [formData, setFormData] = useState({
@@ -11,12 +12,21 @@ const Register = (props) => {
 
         const { name, email, password, password2 } = formData;
         const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log(formData);
+
+        const onSubmit = async e => {
+            e.preventDefault();
+            if (password !== password2) {
+                console.log('Passwords do not match');
+            } else {
+                console.log('Success');
+            }
+        };
+
         return (
             <Fragment>
                 <h1 className="large text-primary">Sign Up</h1>
                 <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-                <form className="form" action="create-profile.html">
+                <form className="form" onSubmit={e => onSubmit(e)}>
                     <div className="form-group">
                         <input type="text" placeholder="Name" name="name" value={name}
                                onChange={e => onChange(e)}
@@ -41,6 +51,7 @@ const Register = (props) => {
                                 onChange(e);
                                 e.target.value.length > 0 ? setShowConfirmPass(true) : setShowConfirmPass(false);
                             }}
+                            required
                         />
                     </div>
                     {showConfirmPass && <div className="form-group">
@@ -51,12 +62,13 @@ const Register = (props) => {
                             minLength="6"
                             value={password2}
                             onChange={e => onChange(e)}
+                            required
                         />
                     </div>}
                     < input type='submit' className='btn btn-primary' value='Register'/>
                 </form>
                 <p className="my-1">
-                    Already have an account? <a href="login.html">Sign In</a>
+                    Already have an account? <Link to="/login">Sign In</Link>
                 </p>
             </Fragment>
         );
