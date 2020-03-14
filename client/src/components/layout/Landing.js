@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Landing(props) {
     return (
@@ -9,8 +10,8 @@ function Landing(props) {
                     <p className="lead">Create developer profile/portfolio, share posts and get help from other
                         developers</p>
                     <div className="buttons">
-                        <a href="register.html" className="btn btn-primary">Sign Up</a>
-                        <a href="login.html" className="btn">Login</a>
+                        <Link to="register" className="btn btn-primary">Sign Up</Link>
+                        <Link to="/login" className="btn">Login</Link>
                     </div>
                 </div>
             </div>
