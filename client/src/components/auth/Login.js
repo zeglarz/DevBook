@@ -43,7 +43,6 @@ const Login = (props) => {
                 </p>
             </Fragment>
         );
-    }
-;
+    };
 
 export default Login;
