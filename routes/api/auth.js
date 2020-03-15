@@ -51,6 +51,7 @@ let loginUser = async (req, res) => {
         res.status(500).send('Server error');
     }
 };
+
 // @route   GET api/aut
 // @desc    Test route
 // @access  Public
