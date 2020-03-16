@@ -35,7 +35,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                 }
                 setFormData(profileData);
             }
-        }, []);
+        }, [loading, profile, getCurrentProfile]);
 
 
         const [formData, setFormData] = useState({

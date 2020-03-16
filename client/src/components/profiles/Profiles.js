@@ -4,15 +4,12 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfiles } from '../../actions/profile';
 import ProfileItem from './ProfileItem';
-import DashboardActions from '../dashboard/dashboardActions';
-import Experience from '../dashboard/Experience';
-import Education from '../dashboard/Education';
-import { Link } from 'react-router-dom';
+
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     useEffect(() => {
         getProfiles();
-    }, []);
+    }, [getProfiles]);
     return loading ? <Spinner/> : <Fragment>
         <h1 className="large text-primary">Developers</h1>
         <p className="lead"><i className="fab fa-connectdevelop"></i>
