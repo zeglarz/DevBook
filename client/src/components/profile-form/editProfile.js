@@ -23,7 +23,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
         const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
 
         useEffect(() => {
-            getCurrentProfile();
+            //getCurrentProfile();
             if (!profile) getCurrentProfile();
             if (!loading) {
                 const profileData = { ...initialState };
@@ -184,7 +184,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                         </Fragment>
                     )}
                     <input type="submit" className="btn btn-primary my-1"/>
-                    <Link className='btn btn-light my-1' to='/dashboard'> Go Back </Link>
+                    <Link className='btn btn-light my-1' to='/dashboard'> Go To Dashboard</Link>
                 </form>
             </Fragment>
         );
