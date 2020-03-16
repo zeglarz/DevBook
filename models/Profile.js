@@ -28,7 +28,7 @@ const ProfileSchema = new mongoose.Schema({
     githubusername: {
         type: String
     },
-    experiance: [
+    experience: [
         {
             title: {
                 type: String,

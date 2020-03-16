@@ -174,7 +174,7 @@ const updateExperience = async (req, res) => {
 
     try {
         const profile = await Profile.findOne({ user: req.user.id });
-        profile.experiance.unshift(newExp);
+        profile.experience.unshift(newExp);
         await profile.save();
         await res.json(profile);
     } catch (err) {
@@ -204,9 +204,9 @@ const deleteExperience = async (req, res) => {
         const profile = await Profile.findOne({ user: req.user.id });
 
         // Get remove index
-        const removeIndex = profile.experiance.map(item => item.id).indexOf(req.params.exp_id);
+        const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
 
-        profile.experiance.splice(removeIndex, 1);
+        profile.experience.splice(removeIndex, 1);
         await profile.save();
         await res.json(profile);
     } catch (err) {
