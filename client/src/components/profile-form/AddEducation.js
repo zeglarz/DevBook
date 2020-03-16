@@ -77,7 +77,7 @@ const AddEducation = ({ addEducation, history }) => {
                         <input type="checkbox" name="current" checked={current} value={current} onChange={() => {
                             setFormData({ ...formData, current: !current });
                             setToDateDisabled(!toDateDisabled);
-                        }}/> Current School or Bootcamp
+                        }}/> {' '}Current School or Bootcamp
                     </p>
                 </div>
                 {!toDateDisabled && (<div className="form-group">

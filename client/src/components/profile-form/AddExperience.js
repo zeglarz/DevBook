@@ -70,7 +70,7 @@ const AddExperience = ({ addExperience, history }) => {
                             setFormData({ ...formData, current: !current });
                             setToDateDisabled(!toDateDisabled);
                         }}/>
-                        Current Job
+                        {' '}Current Job
                     </p>
                 </div>
                 {!toDateDisabled && (<div className="form-group">
