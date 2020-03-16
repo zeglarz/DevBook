@@ -38,7 +38,6 @@ const CreateProfile = ({ createProfile, history }) => {
     } = formData;
 
     const onChange = e => {
-        console.log(formData);
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 

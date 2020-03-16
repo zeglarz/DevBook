@@ -69,7 +69,6 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
         } = formData;
 
         const onChange = e => {
-            console.log(formData);
             setFormData({ ...formData, [e.target.name]: e.target.value });
         };
 
@@ -107,16 +106,13 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     <div className="form-group">
                         <input type="text" placeholder="Company" name="company" value={company}
                                onChange={e => onChange(e)}/>
-                        <small className="form-text"
-                        >Could be your own company or one you work for</small
-                        >
+                        <small className="form-text">Could be your own company or one you work for</small>
                     </div>
                     <div className="form-group">
                         <input type="text" placeholder="Website" name="website" value={website}
                                onChange={e => onChange(e)}/>
                         <small className="form-text"
-                        >Could be your own or a company website</small
-                        >
+                        >Could be your own or a company website</small>
                     </div>
                     <div className="form-group">
                         <input type="text" placeholder="Location" name="location" value={location}
