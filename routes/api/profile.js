@@ -5,6 +5,8 @@ const request = require('request');
 const config = require('config');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
+
 const { check, validationResult } = require('express-validator/check');
 // bring in normalize to give us a proper url, regardless of what user entered
 const normalize = require('normalize-url');
@@ -140,7 +142,9 @@ router.get('/user/:user_id', getProfile);
 
 const deleteProfile = async (req, res) => {
     try {
-        // @todo - remove users posts
+        // Remove users posts
+        await Post.deleteMany({ user: req.user.id });
+
         // Remove profile
         await Profile.findOneAndRemove({ user: req.user.id });
 
