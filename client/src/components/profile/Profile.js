@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
 
 const Profile = ({ match, getProfileById, profile: { profile, loading }, auth }) => {
     useEffect(() => {
@@ -28,6 +30,13 @@ const Profile = ({ match, getProfileById, profile: { profile, loading }, auth })
                                 <ProfileExperience exp={exp} key={exp._id}/>
                             )) : (<h4>No experience added</h4>)}
                         </div>
+                        <div className="profile-edu bg-white p-2">
+                            <h2 className="text-primary">Education</h2>
+                            {profile.education.length > 0 ? (profile.education.map(edu =>
+                                <ProfileEducation edu={edu} key={edu._id}/>
+                            )) : (<h4>No education added</h4>)}
+                        </div>
+                        {profile.githubusername && <ProfileGithub username={profile.githubusername}/>}
                     </div>
                 </Fragment>}
         </Fragment>
