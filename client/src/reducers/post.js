@@ -69,7 +69,9 @@ export default function (state = initialState, action) {
                 ...state,
                 post: {
                     ...state.post,
-                    comments: state.post.comment.filter(comment => comment._id !== payload)
+                    comments: state.post.comments.filter(
+                        comment => comment._id !== payload
+                    )
                 },
                 loading: false
             };
