@@ -212,6 +212,12 @@ img {
     color: #fff;
 }
 
+.btn-delete {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
 .btn-success,
 .bg-success,
 .badge-success,
