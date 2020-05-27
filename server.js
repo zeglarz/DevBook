@@ -15,9 +15,7 @@ app.use(express.json({ extended: false }));
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
 
 
-app.get('/', (req, res) => {
-    res.send('API Running');
-});
+app.get('/', (req, res) => res.send('API Running'));
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
