@@ -1,6 +1,6 @@
 # DevBook
 
-[Live DEMO](https://devbookkonradrudnicki.com)
+[Live DEMO](https://devbook.konradrudnicki.com)
 
 
 ## Description
