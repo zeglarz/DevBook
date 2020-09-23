@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
@@ -8,7 +8,7 @@ import Routes from './components/routing/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
-import { loadUser } from './actions/auth';
+import { loadUser } from './redux/actions/auth';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -20,9 +20,10 @@ const App = () => {
     }, []);
     return (
         <Provider store={store}>
-            <Router>
+            <Router basename={'#'}>
                 <Fragment>
-                    <Navbar></Navbar>
+                    <Navbar/>
+                    <Redirect from='/' to='/dashboard'/>
                     <Switch>
                         <Route exact path="/" component={Landing}/>
                         <Route component={Routes}/>

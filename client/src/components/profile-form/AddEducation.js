@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addEducation } from '../../actions/profile';
+import { addEducation } from '../../redux/actions/profile';
 
 const AddEducation = ({ addEducation, history }) => {
 

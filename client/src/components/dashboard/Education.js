@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { deleteEducation } from '../../actions/profile';
+import { deleteEducation } from '../../redux/actions/profile';
 import { connect } from 'react-redux';
 
 const Education = ({ education, deleteEducation }) => {

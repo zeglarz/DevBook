@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPost } from '../../actions/post';
+import { addPost } from '../../redux/actions/post';
 
 const PostForm = ({ addPost }) => {
     const [text, setText] = useState('');
@@ -23,6 +23,7 @@ const PostForm = ({ addPost }) => {
                     e.preventDefault();
                     addPost({ text });
                     setText('');
+                    setShowPostField(false);
                 }}>
           <textarea
               name="text"

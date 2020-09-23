@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteAccount, getCurrentProfile } from '../../actions/profile';
+import { deleteAccount, getCurrentProfile } from '../../redux/actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import DashboardActions from './dashboardActions';

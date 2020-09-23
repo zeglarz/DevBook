@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../redux/actions/profile';
 
 const initialState = {
     company: '',
@@ -150,7 +150,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                         <Fragment>
                             <div className="form-group social-input">
                                 <i className="fab fa-twitter fa-2x"></i>
-                                <input type="text" placeholder="Twitter URL" name="twitter" value={twitter}
+                                <input type="text" placeholder="Twitter " name="twitter" value={twitter}
                                        onChange={e => onChange(e)}/>
                             </div>
 

@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth';
+import { setAlert } from '../../redux/actions/alert';
+import { register } from '../../redux/actions/auth';
 import PropTypes from 'prop-types';
+import { login } from '../../redux/actions/auth';
 
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = ({ setAlert, login, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -84,6 +85,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <p className="my-1">
                 Already have an account? <Link to="/login">Sign In</Link>
             </p>
+            <p className="my-1">
+                Try out demo <a onClick={() => login('john@doe.com', '123456')}>Demo Account</a>
+            </p>
         </Fragment>
     );
 };
@@ -98,4 +102,4 @@ const mapStateProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateProps, { setAlert, register })(Register);
+export default connect(mapStateProps, { setAlert, register, login })(Register);
